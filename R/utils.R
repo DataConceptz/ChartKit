@@ -20,7 +20,7 @@ get_chart_catalog <- function() {
     category = c(
       rep("Basic", 16),
       rep("Intermediate", 15),
-      rep("Advanced", 16)
+      rep("Advanced", 17)
     ),
     chart_type = c(
       # Basic

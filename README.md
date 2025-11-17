@@ -2,11 +2,11 @@
 
 > **Unified Data Visualization Package for Publication-Ready Charts**
 
-ChartKit is a comprehensive R package that provides 47+ chart types ranging from basic to advanced visualizations. It unifies multiple visualization packages (ggplot2, plotly, ggridges, treemapify, ggalluvial, etc.) into a consistent, easy-to-use API designed for creating publication-ready charts.
+ChartKit is a comprehensive R package that provides 48 chart types ranging from basic to advanced visualizations. It unifies multiple visualization packages (ggplot2, plotly, ggridges, treemapify, ggalluvial, etc.) into a consistent, easy-to-use API designed for creating publication-ready charts.
 
 ## Features
 
-- **47+ Chart Types**: From basic scatter plots to advanced Sankey diagrams
+- **48 Chart Types**: From basic scatter plots to advanced Sankey diagrams
 - **Consistent API**: All visualization functions follow the `viz_*()` naming convention
 - **Publication-Ready**: Built-in themes optimized for academic publications and reports
 - **Colorblind-Friendly**: Multiple color palettes designed for accessibility
@@ -55,7 +55,7 @@ print_chart_catalog()
 - Waterfall, Funnel, Radar, Bubble, Lollipop
 - Dumbbell, Cleveland Dot, Violin-Box, Raincloud, Polar Bar
 
-### Advanced Charts (16 types)
+### Advanced Charts (17 types)
 - Sankey, Treemap, Sunburst, Network, Parallel Coordinates
 - Chord, Calendar Heatmap, Hexbin, Stream, Alluvial
 - Circular Bar, Bullet, Slope, Wind Rose, Gantt

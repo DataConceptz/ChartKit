@@ -65,6 +65,7 @@ export(print_chart_catalog)
 # Import required packages
 import(ggplot2)
 import(dplyr)
+importFrom(magrittr, "%>%")
 importFrom(tidyr, pivot_longer, pivot_wider)
 importFrom(scales, comma, percent, dollar)
 importFrom(grid, unit)
