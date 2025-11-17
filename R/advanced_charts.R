@@ -303,7 +303,7 @@ viz_calendar_heatmap <- function(data, date, value,
     )
 
   p <- ggplot2::ggplot(plot_data, ggplot2::aes(x = week, y = weekday, fill = value)) +
-    ggplot2::geom_tile(color = "white", size = 0.5) +
+    ggplot2::geom_tile(color = "white", linewidth = 0.5) +
     ggplot2::facet_wrap(~ month, scales = "free_x") +
     viridis::scale_fill_viridis(option = "plasma") +
     theme_publication() +
@@ -535,7 +535,7 @@ viz_slope <- function(data, category, time, value,
 
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!time_var, y = !!val_var,
                                           group = !!cat_var, color = !!cat_var)) +
-    ggplot2::geom_line(size = 1.5, alpha = 0.7) +
+    ggplot2::geom_line(linewidth = 1.5, alpha = 0.7) +
     ggplot2::geom_point(size = 4) +
     ggrepel::geom_text_repel(ggplot2::aes(label = !!cat_var),
                             data = data %>% dplyr::filter(!!time_var == min(!!time_var)),
