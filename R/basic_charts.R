@@ -81,9 +81,9 @@ viz_line <- function(data, x, y, group = NULL, color = NULL,
                                 size = line_size)
     p <- p + scale_color_publication()
   } else if (!rlang::quo_is_null(group_var)) {
-    p <- p + ggplot2::geom_line(ggplot2::aes(group = !!group_var), size = line_size)
+    p <- p + ggplot2::geom_line(ggplot2::aes(group = !!group_var), linewidth = line_size)
   } else {
-    p <- p + ggplot2::geom_line(size = line_size)
+    p <- p + ggplot2::geom_line(linewidth = line_size)
   }
 
   p <- p + theme_publication() +
@@ -462,7 +462,7 @@ viz_ribbon <- function(data, x, y, ymin, ymax,
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!x_var, y = !!y_var)) +
     ggplot2::geom_ribbon(ggplot2::aes(ymin = !!ymin_var, ymax = !!ymax_var),
                         fill = fill, alpha = alpha) +
-    ggplot2::geom_line(color = fill, size = 1) +
+    ggplot2::geom_line(color = fill, linewidth = 1) +
     theme_publication() +
     ggplot2::labs(
       title = title,
@@ -498,10 +498,10 @@ viz_step <- function(data, x, y, color = NULL, direction = "hv",
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!x_var, y = !!y_var))
 
   if (!rlang::quo_is_null(color_var)) {
-    p <- p + ggplot2::geom_step(ggplot2::aes(color = !!color_var), direction = direction, size = 1)
+    p <- p + ggplot2::geom_step(ggplot2::aes(color = !!color_var), direction = direction, linewidth = 1)
     p <- p + scale_color_publication()
   } else {
-    p <- p + ggplot2::geom_step(direction = direction, size = 1, color = "#0072B2")
+    p <- p + ggplot2::geom_step(direction = direction, linewidth = 1, color = "#0072B2")
   }
 
   p <- p + theme_publication() +
@@ -625,7 +625,7 @@ viz_qq <- function(data, sample, distribution = "norm",
 
   p <- ggplot2::ggplot(data, ggplot2::aes(sample = !!sample_var)) +
     ggplot2::stat_qq(color = "#0072B2", size = 2, alpha = 0.7) +
-    ggplot2::stat_qq_line(color = "#D55E00", size = 1, linetype = "dashed") +
+    ggplot2::stat_qq_line(color = "#D55E00", linewidth = 1, linetype = "dashed") +
     theme_publication() +
     ggplot2::labs(
       title = title,
@@ -657,10 +657,10 @@ viz_ecdf <- function(data, x, color = NULL,
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!x_var))
 
   if (!rlang::quo_is_null(color_var)) {
-    p <- p + ggplot2::stat_ecdf(ggplot2::aes(color = !!color_var), size = 1)
+    p <- p + ggplot2::stat_ecdf(ggplot2::aes(color = !!color_var), linewidth = 1)
     p <- p + scale_color_publication()
   } else {
-    p <- p + ggplot2::stat_ecdf(size = 1, color = "#0072B2")
+    p <- p + ggplot2::stat_ecdf(linewidth = 1, color = "#0072B2")
   }
 
   p <- p + theme_publication() +

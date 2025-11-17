@@ -288,9 +288,42 @@ p + scale_color_publication(palette = "dark")
 - Advanced charts (Sankey, Chord, Network) require specific data formats - see examples
 - Calendar heatmap requires lubridate package
 
-## More Examples
+## Comprehensive Example Files
 
-See `inst/examples/basic_examples.R` for comprehensive, tested examples of all basic charts.
+ChartKit includes three complete example files with tested, production-ready code:
+
+### Basic Charts (`inst/examples/basic_examples.R`)
+- Scatter plots with proper factor conversion
+- Bar charts with data aggregation
+- Line plots for time series
+- Box plots, violin plots, histograms
+- Density plots and statistical charts
+- Proper data preparation for each chart type
+
+### Intermediate Charts (`inst/examples/intermediate_examples.R`)
+- Heatmaps and correlation matrices
+- Bubble charts and lollipop plots
+- Dumbbell charts for comparisons
+- Waterfall and funnel charts
+- Ridgeline and violin-box combinations
+- Raincloud plots (ultimate distribution viz)
+
+### Advanced Charts (`inst/examples/advanced_examples.R`)
+**Special focus on network visualizations:**
+- **Sankey diagrams** - Customer journeys, budget flows, energy flows
+- **Network graphs** - Social networks, citations, collaborations
+- **Chord diagrams** - Trade flows, migration, information exchange
+- Treemaps for hierarchical data
+- Parallel coordinates for multivariate analysis
+- Gantt charts for project management
+- Hexbin plots for large datasets
+
+Each example file includes:
+- ✅ Working code you can copy-paste
+- ✅ Real data or realistic simulated data
+- ✅ Detailed comments explaining each step
+- ✅ Best practices and gotchas
+- ✅ Data preparation steps
 
 ## Citation
 

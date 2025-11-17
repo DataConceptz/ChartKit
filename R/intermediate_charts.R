@@ -21,7 +21,7 @@ viz_heatmap <- function(data, x, y, value,
   value_var <- rlang::enquo(value)
 
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!x_var, y = !!y_var, fill = !!value_var)) +
-    ggplot2::geom_tile(color = "white", size = 0.5) +
+    ggplot2::geom_tile(color = "white", linewidth = 0.5) +
     viridis::scale_fill_viridis(option = "plasma") +
     theme_publication() +
     ggplot2::theme(
@@ -308,7 +308,7 @@ viz_radar <- function(data, variables, values, group = NULL,
   }
 
   p <- p +
-    ggplot2::geom_polygon(alpha = 0.2, size = 1) +
+    ggplot2::geom_polygon(alpha = 0.2, linewidth = 1) +
     ggplot2::geom_point(size = 3) +
     ggplot2::coord_polar() +
     scale_color_publication() +
