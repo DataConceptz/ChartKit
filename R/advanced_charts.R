@@ -28,7 +28,7 @@ viz_sankey <- function(data, source, target, value,
                       ggplot2::aes(y = value, axis1 = source, axis2 = target)) +
     ggalluvial::geom_alluvium(ggplot2::aes(fill = source), width = 1/12, alpha = 0.7) +
     ggalluvial::geom_stratum(width = 1/12, fill = "grey80", color = "white") +
-    ggplot2::geom_text(stat = "stratum", ggplot2::aes(label = ggplot2::after_stat(stratum))) +
+    ggalluvial::stat_stratum(geom = "text", ggplot2::aes(label = ggplot2::after_stat(stratum))) +
     scale_fill_publication() +
     theme_publication() +
     ggplot2::theme(
@@ -259,7 +259,7 @@ viz_chord <- function(data, from, to, value,
                          strength = 0.5, color = "#0072B2") +
     ggraph::geom_node_point(size = 5, color = "#D55E00") +
     ggraph::geom_node_text(ggplot2::aes(label = name), repel = TRUE) +
-    ggplot2::scale_edge_width(range = c(0.5, 3)) +
+    ggraph::scale_edge_width(range = c(0.5, 3)) +
     theme_publication() +
     ggplot2::theme(
       axis.text = ggplot2::element_blank(),
@@ -410,7 +410,7 @@ viz_alluvial <- function(data, axes, freq,
     ggalluvial::geom_alluvium(ggplot2::aes(fill = .data[[axes[1]]]),
                              width = 1/12, alpha = 0.7) +
     ggalluvial::geom_stratum(width = 1/12, fill = "grey80", color = "white") +
-    ggplot2::geom_text(stat = "stratum", ggplot2::aes(label = ggplot2::after_stat(stratum)),
+    ggalluvial::stat_stratum(geom = "text", ggplot2::aes(label = ggplot2::after_stat(stratum)),
                       size = 3) +
     scale_fill_publication() +
     theme_publication() +
