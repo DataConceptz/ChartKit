@@ -1,0 +1,45 @@
+Package: ChartKit
+Type: Package
+Title: Unified Data Visualization Package for Publication-Ready Charts
+Version: 0.1.0
+Authors@R: person("DataConceptz", "R-Vis", email = "contact@dataconceptz.com",
+                  role = c("aut", "cre"))
+Description: A comprehensive R package that unifies multiple visualization
+    packages (ggplot2, plotly, ggridges, treemapify, ggalluvial, etc.) to provide
+    47+ chart types ranging from basic to advanced visualizations. Designed for
+    creating publication-ready charts with consistent API and colorblind-friendly
+    palettes.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 3.6.0)
+Imports:
+    ggplot2,
+    dplyr,
+    tidyr,
+    scales,
+    grid,
+    gridExtra,
+    ggridges,
+    ggalluvial,
+    treemapify,
+    ggraph,
+    igraph,
+    plotly,
+    viridis,
+    RColorBrewer,
+    cowplot,
+    patchwork,
+    ggrepel,
+    ggforce,
+    rlang,
+    lubridate
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+RoxygenNote: 7.2.0
+VignetteBuilder: knitr
+URL: https://github.com/DataConceptz/ChartKit
+BugReports: https://github.com/DataConceptz/ChartKit/issues
