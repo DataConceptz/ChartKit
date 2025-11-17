@@ -39,7 +39,8 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    ggbeeswarm
 RoxygenNote: 7.2.0
 VignetteBuilder: knitr
 URL: https://github.com/DataConceptz/ChartKit

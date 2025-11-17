@@ -290,7 +290,7 @@ p + scale_color_publication(palette = "dark")
 
 ## Comprehensive Example Files
 
-ChartKit includes three complete example files with tested, production-ready code:
+ChartKit includes four complete example files with tested, production-ready code:
 
 ### Basic Charts (`inst/examples/basic_examples.R`)
 - Scatter plots with proper factor conversion
@@ -299,6 +299,17 @@ ChartKit includes three complete example files with tested, production-ready cod
 - Box plots, violin plots, histograms
 - Density plots and statistical charts
 - Proper data preparation for each chart type
+
+### Distribution Visualizations (`inst/examples/distribution_examples.R`) ⭐ NEW
+**High-quality examples following r-graph-gallery.com standards:**
+- **Violin plots** - Basic, with colors, box overlay, statistical summaries
+- **Density plots** - Single and multiple groups, stacked, with rug marks
+- **Histograms** - Optimal binning, density overlay, faceted, stacked
+- **Box plots** - Basic, with notches, jittered points, horizontal layouts
+- **Ridgeline plots** - Distribution comparison, quantile lines, multiple categories
+- **Beeswarm plots** - Individual points, sina plots, combined with box/violin
+- **Advanced combinations** - Raincloud plots, multi-panel figures, hybrid visualizations
+- All examples include publication-ready styling and statistical overlays
 
 ### Intermediate Charts (`inst/examples/intermediate_examples.R`)
 - Heatmaps and correlation matrices
