@@ -116,10 +116,10 @@ p <- ggplot(economics_recent, aes(x = unemploy, y = pop)) +
              fill = "#009E73", stroke = 2) +
   geom_point(data = last_point, color = "#D55E00", size = 5, shape = 21,
              fill = "#D55E00", stroke = 2) +
-  annotate("text", x = first_point$unemploy, y = first_point$pop,
-           label = "START", vjust = -1, fontface = "bold", size = 4) +
-  annotate("text", x = last_point$unemploy, y = last_point$pop,
-           label = "END", vjust = 2, fontface = "bold", size = 4) +
+  geom_text(data = first_point, aes(x = unemploy, y = pop),
+            label = "START", vjust = -1, fontface = "bold", size = 4) +
+  geom_text(data = last_point, aes(x = unemploy, y = pop),
+            label = "END", vjust = 2, fontface = "bold", size = 4) +
   scale_color_viridis_c(option = "plasma", name = "Year") +
   theme_publication() +
   labs(

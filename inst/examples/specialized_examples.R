@@ -124,8 +124,8 @@ before_after <- data.frame(
 
 viz_dumbbell(before_after,
              category = category,
-             x1 = before,
-             x2 = after,
+             value1 = before,
+             value2 = after,
              title = "Product Performance: Before vs After",
              subtitle = "Improvement across all products")
 

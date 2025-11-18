@@ -120,8 +120,8 @@ monthly_data <- data.frame(
 )
 
 viz_circular_bar(monthly_data,
-                 x = month,
-                 y = value,
+                 category = month,
+                 value = value,
                  title = "Monthly Temperature Pattern",
                  subtitle = "Circular layout emphasizes cyclical nature")
 
@@ -335,8 +335,8 @@ monthly_sales <- data.frame(
 )
 
 viz_polar_bar(monthly_sales,
-              x = month,
-              y = sales,
+              category = month,
+              value = sales,
               title = "Polar Area Chart (Nightingale Rose)",
               subtitle = "Annual sales pattern in polar coordinates")
 
