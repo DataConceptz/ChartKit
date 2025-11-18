@@ -252,8 +252,8 @@ print(p)
 # 4.1 Basic Pie Chart
 # -----------------------------------------------------------------------------
 viz_pie(sales_data,
-        values = sales,
-        labels = category,
+        category = category,
+        value = sales,
         title = "Market Share by Category",
         subtitle = "Pie chart shows proportions")
 
@@ -288,8 +288,8 @@ print(p)
 # 4.3 Donut Chart
 # -----------------------------------------------------------------------------
 viz_donut(sales_data,
-          values = sales,
-          labels = category,
+          category = category,
+          value = sales,
           title = "Sales Distribution (Donut Chart)",
           subtitle = "Hollow center improves readability")
 

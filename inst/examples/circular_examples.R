@@ -160,7 +160,7 @@ p <- ggplot(monthly_labeled, aes(x = month, y = value, fill = month)) +
   geom_bar(stat = "identity", alpha = 0.8, width = 0.9) +
   geom_text(aes(y = value + 5, label = month, angle = angle, hjust = hjust),
             size = 3.5, fontface = "bold") +
-  scale_fill_publication() +
+  scale_fill_viridis_d(option = "turbo") +
   coord_polar(start = 0) +
   ylim(-30, max(monthly_labeled$value) * 1.2) +
   theme_publication() +
