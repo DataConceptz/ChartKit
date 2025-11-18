@@ -1,20 +1,42 @@
 #' Scatter Plot
 #'
-#' Create a publication-ready scatter plot.
+#' Create a publication-ready scatter plot showing the relationship between
+#' two continuous variables. Supports color grouping and variable point sizes.
 #'
-#' @param data Data frame
-#' @param x Column name for x-axis
-#' @param y Column name for y-axis
-#' @param color Optional column name for color grouping
-#' @param size Optional column name for point size
-#' @param title Plot title
-#' @param subtitle Plot subtitle
-#' @param xlab X-axis label
-#' @param ylab Y-axis label
-#' @param alpha Point transparency (0-1, default: 0.7)
-#' @param point_size Point size (default: 3)
-#' @return A ggplot2 object
+#' @param data Data frame containing the variables to plot
+#' @param x Column name for x-axis (unquoted)
+#' @param y Column name for y-axis (unquoted)
+#' @param color Optional column name for color grouping (unquoted)
+#' @param size Optional column name for point size (unquoted)
+#' @param title Plot title (character string)
+#' @param subtitle Plot subtitle (character string)
+#' @param xlab X-axis label (character string, defaults to column name)
+#' @param ylab Y-axis label (character string, defaults to column name)
+#' @param alpha Point transparency (numeric, 0-1, default: 0.7)
+#' @param point_size Point size when size aesthetic is not used (numeric, default: 3)
+#' @return A ggplot2 object that can be further customized
 #' @export
+#' @examples
+#' library(dplyr)
+#'
+#' # Basic scatter plot
+#' viz_scatter(mtcars, x = wt, y = mpg,
+#'             title = "Fuel Efficiency vs Weight")
+#'
+#' # With color grouping (convert to factor first)
+#' mtcars_clean <- mtcars %>%
+#'   mutate(cyl_factor = factor(cyl))
+#' viz_scatter(mtcars_clean, x = wt, y = mpg, color = cyl_factor,
+#'             title = "MPG by Weight and Cylinders",
+#'             xlab = "Weight (1000 lbs)",
+#'             ylab = "Miles per Gallon")
+#'
+#' # With variable point sizes
+#' viz_scatter(mtcars, x = wt, y = mpg, size = hp,
+#'             title = "Bubble Chart: Weight, MPG, and Horsepower")
+#'
+#' @seealso \code{\link{viz_bubble}} for three-variable relationships,
+#'          \code{\link{theme_publication}} for the default theme
 viz_scatter <- function(data, x, y, color = NULL, size = NULL,
                        title = NULL, subtitle = NULL, xlab = NULL, ylab = NULL,
                        alpha = 0.7, point_size = 3) {
