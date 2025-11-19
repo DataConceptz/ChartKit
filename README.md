@@ -378,6 +378,86 @@ ChartKit includes **SEVEN complete example files** with tested, production-ready
 
 **Total: 2000+ lines of tested, production-ready visualization code!**
 
+## Documentation & Help
+
+### Comprehensive Help Pages
+
+ChartKit now includes extensive documentation accessible from R:
+
+```r
+# Main package documentation
+?ChartKit
+
+# View all 48 chart types
+?print_chart_catalog
+print_chart_catalog()  # Pretty-printed list
+
+# Function documentation with examples
+?viz_scatter         # Scatter plots
+?viz_bar             # Bar charts
+?viz_heatmap         # Heatmaps
+?viz_sankey          # Sankey diagrams
+
+# Themes and styling
+?theme_publication   # Publication themes
+?scale_color_publication  # Colorblind-friendly palettes
+?save_publication    # Save high-quality figures
+
+# Browse all help pages
+help(package = "ChartKit")
+```
+
+### Getting Started Vignette
+
+```r
+# View the getting started guide
+vignette("getting-started", package = "ChartKit")
+
+# Or browse all vignettes
+browseVignettes("ChartKit")
+```
+
+### Example Files
+
+Load comprehensive examples directly:
+
+```r
+# Distribution visualizations (30+ examples)
+source(system.file("examples/distribution_examples.R", package = "ChartKit"))
+
+# Categorical data (40+ bar chart variations)
+source(system.file("examples/categorical_examples.R", package = "ChartKit"))
+
+# Advanced visualizations (Sankey, network, chord)
+source(system.file("examples/advanced_examples.R", package = "ChartKit"))
+```
+
+### Quick Reference
+
+**Most Common Functions:**
+- `viz_scatter()` - Scatter plots for relationships
+- `viz_bar()` - Bar charts for comparisons (requires aggregated data!)
+- `viz_boxplot()` - Distribution and outliers
+- `viz_heatmap()` - Matrix visualization
+- `viz_line()` - Time series
+
+**Don't Forget:**
+- Convert categorical variables to factors before plotting
+- Aggregate data before creating bar charts
+- Use `theme_publication()` for consistent styling
+- Save with `save_publication()` for journal submission
+
+### Search Help
+
+```r
+# Search for specific topics
+help.search("heatmap", package = "ChartKit")
+help.search("color", package = "ChartKit")
+
+# Find specific functions
+apropos("viz_")  # Lists all viz_* functions
+```
+
 ## Citation
 
 If you use ChartKit in your research, please cite:

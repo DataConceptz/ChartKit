@@ -1,0 +1,78 @@
+ChartKit-package         ChartKit: Publication-Ready Data Visualization for R
+
+Package Overview
+ChartKit                ChartKit package documentation
+print_chart_catalog     View all 48 available chart types
+get_chart_catalog       Get chart catalog as data frame
+
+Themes and Styling
+theme_publication       Publication-ready theme (with grid)
+theme_minimal_pub       Minimalist theme (no grid)
+theme_classic_pub       Classic theme (strong borders)
+scale_color_publication Colorblind-friendly color scale
+scale_fill_publication  Colorblind-friendly fill scale
+save_publication        Save high-quality figures for journals
+
+Basic Charts (16 types)
+viz_scatter             Scatter plot for relationships
+viz_line                Line plot for time series
+viz_bar                 Bar chart for categorical comparisons
+viz_histogram           Histogram for distributions
+viz_boxplot             Box plot for distribution and outliers
+viz_violin              Violin plot for distribution shape
+viz_density             Density plot for smooth distributions
+viz_pie                 Pie chart for proportions
+viz_donut               Donut chart with hollow center
+viz_area                Area plot for cumulative data
+viz_ribbon              Ribbon plot for confidence intervals
+viz_step                Step plot for discrete changes
+viz_errorbar            Error bar plot for uncertainty
+viz_jitter              Jitter plot for categorical scatter
+viz_qq                  Q-Q plot for distribution comparison
+viz_ecdf                Empirical cumulative distribution
+
+Intermediate Charts (15 types)
+viz_heatmap             Heatmap for matrix visualization
+viz_correlation         Correlation matrix heatmap
+viz_contour             Contour plot for 3D surfaces
+viz_density2d           2D density plot for bivariate data
+viz_ridgeline           Ridgeline plot for distribution comparison
+viz_waterfall           Waterfall chart for cumulative effects
+viz_funnel              Funnel chart for conversion stages
+viz_radar               Radar chart for multivariate comparison
+viz_bubble              Bubble chart for three variables
+viz_lollipop            Lollipop chart for ranked values
+viz_dumbbell            Dumbbell chart for before/after
+viz_cleveland_dot       Cleveland dot plot for comparisons
+viz_violin_box          Combined violin and box plot
+viz_raincloud           Raincloud plot (violin + box + points)
+viz_polar_bar           Polar bar chart for circular data
+
+Advanced Charts (17 types)
+viz_sankey              Sankey diagram for flow visualization
+viz_treemap             Treemap for hierarchical data
+viz_sunburst            Sunburst chart for hierarchical proportions
+viz_network             Network graph for relationships
+viz_parallel            Parallel coordinates for multivariate analysis
+viz_chord               Chord diagram for inter-relationships
+viz_calendar_heatmap    Calendar heatmap for temporal patterns
+viz_hexbin              Hexbin plot for large datasets
+viz_stream              Stream graph for stacked time series
+viz_alluvial            Alluvial diagram for categorical flows
+viz_circular_bar        Circular bar chart for cyclical patterns
+viz_bullet              Bullet chart for KPIs
+viz_slope               Slope chart for two-point comparison
+viz_wind_rose           Wind rose for directional data
+viz_gantt               Gantt chart for project timelines
+viz_mosaic              Mosaic plot for categorical associations
+viz_marimekko           Marimekko chart for market share
+
+Example Files
+basic_examples.R            Basic chart types with proper data preparation
+distribution_examples.R     30+ distribution visualization examples
+scatter_advanced_examples.R Interactive scatter plots and correlations
+categorical_examples.R      40+ bar plot variations with styling
+circular_examples.R         Radar, circular bar, wind rose diagrams
+specialized_examples.R      Lollipop, treemap, wordcloud examples
+intermediate_examples.R     Heatmaps, bubble charts, waterfalls
+advanced_examples.R         Sankey, network, chord diagram examples

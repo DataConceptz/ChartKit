@@ -1,0 +1,405 @@
+---
+title: "Getting Started with ChartKit"
+author: "DataConceptz R-Vis Team"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with ChartKit}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+## Introduction
+
+ChartKit is a comprehensive R package providing 48 chart types optimized for scientific publications. Built on ggplot2, it offers:
+
+- **Publication-ready themes** based on best practices from Nature, Science, and PLOS
+- **Colorblind-friendly palettes** (Wong 2011)
+- **Consistent API** - all functions follow `viz_*()` naming
+- **High-quality output** - 300+ DPI export capability
+- **150+ working examples** across 7 example files
+
+## Installation
+
+```{r eval=FALSE}
+# Install from GitHub
+remotes::install_github("DataConceptz/ChartKit")
+```
+
+## Quick Start
+
+```{r}
+library(ChartKit)
+library(dplyr)
+library(ggplot2)
+
+# View all available charts
+print_chart_catalog()
+```
+
+## Basic Workflow
+
+### 1. Prepare Your Data
+
+Most ChartKit functions use non-standard evaluation (NSE) and require proper data preparation:
+
+```{r}
+# Convert categorical variables to factors
+mtcars_clean <- mtcars %>%
+  mutate(
+    cyl_factor = factor(cyl, labels = paste(unique(sort(cyl)), "cylinders")),
+    transmission = factor(am, labels = c("Automatic", "Manual"))
+  )
+
+head(mtcars_clean)
+```
+
+### 2. Create Your Plot
+
+```{r scatter-basic, fig.cap="Basic scatter plot with ChartKit"}
+viz_scatter(mtcars_clean,
+            x = wt,
+            y = mpg,
+            color = cyl_factor,
+            title = "Fuel Efficiency vs Weight",
+            subtitle = "Colored by engine configuration",
+            xlab = "Weight (1000 lbs)",
+            ylab = "Miles per Gallon")
+```
+
+### 3. Save for Publication
+
+```{r eval=FALSE}
+# Save at journal quality (300 DPI)
+save_publication("figure1.png", width = 7, height = 5, dpi = 300)
+
+# High resolution for print
+save_publication("figure1.tiff", width = 7, height = 5, dpi = 600)
+
+# Vector format for perfect scaling
+save_publication("figure1.pdf", width = 7, height = 5)
+```
+
+## Chart Categories
+
+### Basic Charts
+
+For fundamental data visualization needs:
+
+```{r histogram, fig.cap="Histogram with publication theme"}
+# Histogram
+viz_histogram(mtcars_clean,
+              x = mpg,
+              bins = 15,
+              title = "Distribution of Fuel Efficiency",
+              xlab = "Miles per Gallon")
+```
+
+```{r boxplot, fig.cap="Box plot comparing groups"}
+# Box plot
+viz_boxplot(mtcars_clean,
+            x = cyl_factor,
+            y = mpg,
+            fill = cyl_factor,
+            title = "MPG Distribution by Cylinder Count",
+            xlab = "Engine Configuration") +
+  theme(legend.position = "none")
+```
+
+### Bar Charts with Aggregation
+
+Bar charts require aggregated data:
+
+```{r bar-chart, fig.cap="Bar chart with error bars"}
+# Aggregate data first
+iris_summary <- iris %>%
+  group_by(Species) %>%
+  summarise(
+    mean_length = mean(Sepal.Length),
+    se = sd(Sepal.Length) / sqrt(n())
+  )
+
+# Create bar chart
+p <- viz_bar(iris_summary,
+             x = Species,
+             y = mean_length,
+             fill = Species,
+             title = "Mean Sepal Length by Species",
+             ylab = "Mean Length (cm)")
+
+# Add error bars
+p + geom_errorbar(aes(ymin = mean_length - se,
+                      ymax = mean_length + se),
+                  width = 0.2) +
+  theme(legend.position = "none")
+```
+
+### Grouped Comparisons
+
+```{r grouped-bar, fig.cap="Grouped bar chart"}
+# Prepare grouped data
+mtcars_grouped <- mtcars_clean %>%
+  group_by(cyl_factor, transmission) %>%
+  summarise(mean_mpg = mean(mpg), .groups = "drop")
+
+# Grouped bar chart
+viz_bar(mtcars_grouped,
+        x = cyl_factor,
+        y = mean_mpg,
+        fill = transmission,
+        position = "dodge",
+        title = "Fuel Efficiency: Cylinders and Transmission",
+        xlab = "Number of Cylinders",
+        ylab = "Average MPG")
+```
+
+## Intermediate Charts
+
+### Heatmaps
+
+```{r heatmap, fig.cap="Heatmap visualization"}
+# Create sample heatmap data
+library(tidyr)
+heat_data <- expand.grid(
+  variable = paste0("Var", 1:8),
+  sample = paste0("S", 1:6)
+) %>%
+  mutate(value = rnorm(n(), mean = 0, sd = 2))
+
+viz_heatmap(heat_data,
+            x = variable,
+            y = sample,
+            value = value,
+            title = "Expression Heatmap",
+            subtitle = "8 variables across 6 samples")
+```
+
+### Distribution Comparison
+
+```{r ridgeline, fig.cap="Ridgeline plot"}
+viz_ridgeline(iris,
+              x = Sepal.Length,
+              y = Species,
+              fill = Species,
+              title = "Sepal Length Distribution by Species",
+              xlab = "Sepal Length (cm)") +
+  theme(legend.position = "none")
+```
+
+## Themes
+
+ChartKit provides three publication-ready themes:
+
+```{r themes, fig.width=10, fig.height=3, fig.cap="Three theme options"}
+library(patchwork)
+
+p_base <- ggplot(mtcars_clean, aes(x = wt, y = mpg, color = cyl_factor)) +
+  geom_point(size = 2.5) +
+  scale_color_publication() +
+  labs(x = "Weight", y = "MPG")
+
+p1 <- p_base + theme_publication() + ggtitle("theme_publication()")
+p2 <- p_base + theme_minimal_pub() + ggtitle("theme_minimal_pub()")
+p3 <- p_base + theme_classic_pub() + ggtitle("theme_classic_pub()")
+
+p1 + p2 + p3
+```
+
+## Color Palettes
+
+All palettes are colorblind-friendly:
+
+```{r palettes, fig.width=10, fig.height=6, fig.cap="Four color palettes"}
+p_base <- ggplot(mtcars_clean, aes(x = factor(cyl), fill = cyl_factor)) +
+  geom_bar() +
+  theme_publication() +
+  theme(legend.position = "none") +
+  labs(x = "Cylinders", y = "Count")
+
+p1 <- p_base + scale_fill_publication(palette = "default") +
+      ggtitle("Default (Wong 2011)")
+p2 <- p_base + scale_fill_publication(palette = "vibrant") +
+      ggtitle("Vibrant")
+p3 <- p_base + scale_fill_publication(palette = "muted") +
+      ggtitle("Muted (Paul Tol)")
+p4 <- p_base + scale_fill_publication(palette = "dark") +
+      ggtitle("Dark")
+
+(p1 + p2) / (p3 + p4)
+```
+
+## Data Preparation Tips
+
+### Factor Conversion
+
+Always convert categorical variables to factors:
+
+```{r}
+# WRONG - numeric will create continuous scale
+ggplot(mtcars, aes(x = wt, y = mpg, color = cyl)) +
+  geom_point()  # Colors are continuous gradient!
+
+# CORRECT - factor creates discrete categories
+ggplot(mtcars_clean, aes(x = wt, y = mpg, color = cyl_factor)) +
+  geom_point() +
+  scale_color_publication()
+```
+
+### Aggregation for Bar Charts
+
+```{r}
+# WRONG - plotting raw data
+# viz_bar(mtcars, x = cyl, y = mpg)  # Error or misleading
+
+# CORRECT - aggregate first
+mtcars_summary <- mtcars %>%
+  mutate(cyl = factor(cyl)) %>%
+  group_by(cyl) %>%
+  summarise(mean_mpg = mean(mpg))
+
+viz_bar(mtcars_summary, x = cyl, y = mean_mpg)
+```
+
+## Example Files
+
+ChartKit includes 7 comprehensive example files with 150+ working examples:
+
+```{r eval=FALSE}
+# Load distribution examples (30+ examples)
+source(system.file("examples/distribution_examples.R", package = "ChartKit"))
+
+# Load categorical examples (40+ bar chart variations)
+source(system.file("examples/categorical_examples.R", package = "ChartKit"))
+
+# Load advanced examples (Sankey, network, chord)
+source(system.file("examples/advanced_examples.R", package = "ChartKit"))
+```
+
+## Best Practices
+
+### 1. Always Label Your Axes
+
+```{r}
+# Include units in labels
+viz_scatter(mtcars_clean, x = wt, y = mpg,
+            xlab = "Weight (1000 lbs)",  # Include units
+            ylab = "Miles per Gallon")
+```
+
+### 2. Use Meaningful Titles
+
+```{r eval=FALSE}
+# WRONG - vague title
+title = "Analysis"
+
+# CORRECT - descriptive title
+title = "Fuel Efficiency Decreases with Vehicle Weight"
+subtitle = "Analysis of 32 car models from 1974"
+```
+
+### 3. Choose Appropriate Chart Types
+
+- **Scatter plots**: Continuous x and y
+- **Bar charts**: Categorical x, continuous y (aggregated)
+- **Box plots**: Categorical x, continuous y (raw data)
+- **Heatmaps**: Two categorical dimensions, continuous value
+- **Line plots**: Time series or ordered continuous x
+
+### 4. Test in Grayscale
+
+```{r eval=FALSE}
+# Save a grayscale version to test
+p + theme_bw() + theme(legend.position = "right")
+```
+
+### 5. Export at Appropriate Resolution
+
+```{r eval=FALSE}
+# Journal submission
+save_publication("figure.tiff", dpi = 600, width = 7, height = 5)
+
+# Presentations
+save_publication("slide.png", dpi = 150, width = 10, height = 7)
+
+# Vector graphics (preferred)
+save_publication("figure.pdf", width = 7, height = 5)
+```
+
+## Common Issues
+
+### Issue: Colors not showing
+
+**Problem**: Used numeric instead of factor
+
+```{r eval=FALSE}
+# Fix: Convert to factor
+data <- data %>% mutate(category = factor(category))
+```
+
+### Issue: Bar chart error
+
+**Problem**: Data not aggregated
+
+```{r eval=FALSE}
+# Fix: Aggregate first
+data_summary <- data %>%
+  group_by(category) %>%
+  summarise(mean_value = mean(value))
+```
+
+### Issue: Too many colors
+
+**Problem**: More than 8 categories with default palette
+
+```{r eval=FALSE}
+# Fix: Use viridis for many categories
++ scale_color_viridis_d()
+```
+
+## Next Steps
+
+1. **Explore examples**: Run example files to see all capabilities
+2. **Read documentation**: `?viz_scatter`, `?theme_publication`, etc.
+3. **Experiment**: Modify examples for your data
+4. **Check journal requirements**: Verify DPI, format, dimensions
+5. **Share**: Contribute examples or report issues on GitHub
+
+## Getting Help
+
+```{r eval=FALSE}
+# Package documentation
+?ChartKit
+
+# Function help
+?viz_scatter
+?save_publication
+
+# View all charts
+print_chart_catalog()
+
+# Search documentation
+help.search("heatmap", package = "ChartKit")
+```
+
+## References
+
+- Wong, B. (2011). Points of view: Color blindness. *Nature Methods* 8(6), 441.
+- GitHub: https://github.com/DataConceptz/ChartKit
+- Issues: https://github.com/DataConceptz/ChartKit/issues
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
